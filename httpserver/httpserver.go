@@ -8,21 +8,9 @@ import (
 	swaggerfiles "github.com/swaggo/files"
 )
 
-type Config struct {
-	ListeningPort string
-}
-
-type Server struct {
-	config    Config
-	ginEngine *gin.Engine
-}
-
-func NewHttpServer(config Config) (server Server) {
+func NewHttpServer() *gin.Engine {
 	router := gin.Default()
 	router.GET("/healthcheck", healthCheckHandler)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
-
-	server.config = config
-	server.ginEngine = router
-	return server
+	return router
 }
