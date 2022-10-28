@@ -23,7 +23,7 @@ func newLogrusEntry(config Config) *logrus.Entry {
 
 func NewDbConnection(config Config) (*sql.DB, error) {
 	logger := newLogrusEntry(config)
-
+	// Open MySQL connection.
 	db, err := sql.Open(
 		"mysql",
 		config.Username+":"+config.Password+"@tcp("+config.Hostname+")/"+config.DatabaseName,
@@ -35,7 +35,6 @@ func NewDbConnection(config Config) (*sql.DB, error) {
 
 	// check the connection
 	err = db.Ping()
-
 	if err != nil {
 		logger.Error(err)
 		return nil, err
