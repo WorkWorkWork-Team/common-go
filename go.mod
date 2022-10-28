@@ -4,8 +4,9 @@ go 1.19
 
 require (
 	github.com/evalphobia/logrus_sentry v0.8.2
-	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gin-gonic/gin v1.8.1
+	github.com/go-sql-driver/mysql v1.6.0
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/sirupsen/logrus v1.9.0
 )
 
