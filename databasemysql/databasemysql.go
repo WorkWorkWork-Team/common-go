@@ -1,9 +1,10 @@
 package databasemysql
 
 import (
-	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
 )
 
@@ -21,13 +22,10 @@ func newLogrusEntry(config Config) *logrus.Entry {
 	})
 }
 
-func NewDbConnection(config Config) (*sql.DB, error) {
+func NewDbConnection(config Config) (*sqlx.DB, error) {
 	logger := newLogrusEntry(config)
 	// Open MySQL connection.
-	db, err := sql.Open(
-		"mysql",
-		config.Username+":"+config.Password+"@tcp("+config.Hostname+")/"+config.DatabaseName,
-	)
+	db, err := sqlx.Connect("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s", config.Username, config.Password, config.Hostname, config.DatabaseName))
 	if err != nil {
 		logger.Error(err)
 		return nil, err
