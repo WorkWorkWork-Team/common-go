@@ -18,7 +18,7 @@ func NewDbConnection(config Config) *sql.DB {
 
 	db, err := sql.Open(
 		"mysql",
-		config.Username+":"+config.Password+"@tcp("+config.Hostname+")/?parseTime=true/"+config.DatabaseName,
+		config.Username+":"+config.Password+"@tcp("+config.Hostname+")/"+config.DatabaseName,
 	)
 	if err != nil {
 		logrus.WithFields(logrus.Fields{
