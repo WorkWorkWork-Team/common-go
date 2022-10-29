@@ -25,7 +25,7 @@ func newLogrusEntry(config Config) *logrus.Entry {
 func NewDbConnection(config Config) (*sqlx.DB, error) {
 	logger := newLogrusEntry(config)
 	// Open MySQL connection.
-	db, err := sqlx.Connect("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s", config.Username, config.Password, config.Hostname, config.DatabaseName))
+	db, err := sqlx.Connect("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=true", config.Username, config.Password, config.Hostname, config.DatabaseName))
 	if err != nil {
 		logger.Error(err)
 		return nil, err
