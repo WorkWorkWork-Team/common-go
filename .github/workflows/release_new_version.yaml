@@ -11,7 +11,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Calculate Semver
         id: semver_rel
         uses: hennejg/github-tag-action@v4.3.1
@@ -29,3 +28,16 @@ jobs:
         with:
           body: ${{steps.github_release.outputs.changelog}}
           tag_name: ${{ steps.semver_rel.outputs.new_tag }}
+  
+  backup to bitbucket:
+    runs-on: ubuntu-latest
+    steps:                                             
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0                                          
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            git clone git@bitbucket.org:softpro-workworkwork/common-go.git
+          ssh_private_key:                              
+            ${{ secrets.BITBUCKET }}
