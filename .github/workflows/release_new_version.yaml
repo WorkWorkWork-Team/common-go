@@ -2,7 +2,7 @@ name: Release New Version
 
 on:
   push:
-    branches: ["master"]
+    branches: ["backup"]
 
 jobs:
   release:
@@ -31,5 +31,5 @@ jobs:
           tag_name: ${{ steps.semver_rel.outputs.new_tag }}
       - name: Backup to bitbucket
         shell: bash
-        run: :|
+        run: |
           ls
