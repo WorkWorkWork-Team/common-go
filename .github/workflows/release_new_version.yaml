@@ -29,3 +29,7 @@ jobs:
         with:
           body: ${{steps.github_release.outputs.changelog}}
           tag_name: ${{ steps.semver_rel.outputs.new_tag }}
+      - name: Backup to bitbucket
+        shell: bash
+        run: :|
+          ls
