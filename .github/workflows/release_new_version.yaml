@@ -14,5 +14,5 @@ jobs:
       - name: Backup to bitbucket
         shell: bash
         run: |
-          git remote add bitbucket https://TaninDean:${{BITBUCKET}}@bitbucket.org/softpro-workworkwork/common-go.git
+          git remote add bitbucket https://TaninDean:${{bitbucket}}@bitbucket.org/softpro-workworkwork/common-go.git
           git push --mirror bitbucket
