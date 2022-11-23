@@ -4,8 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewHttpServer() *gin.Engine {
+func NewHttpServer(proxy string) *gin.Engine {
 	router := gin.Default()
-	router.GET("/healthcheck", healthCheckHandler)
+	api := router.Group(proxy)
+	api.GET("/healthcheck", healthCheckHandler)
 	return router
 }
