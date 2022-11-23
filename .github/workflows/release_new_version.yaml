@@ -2,7 +2,7 @@ name: Release New Version
 
 on:
   push:
-    branches: ["backup"]
+    branches: ["master"]
 
 jobs:
   release:
@@ -28,7 +28,7 @@ jobs:
         with:
           body: ${{steps.github_release.outputs.changelog}}
           tag_name: ${{ steps.semver_rel.outputs.new_tag }}
-          
+  
   to_gitlab:
     runs-on: ubuntu-latest
     steps:                                             
